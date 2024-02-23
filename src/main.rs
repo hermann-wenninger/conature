@@ -13,6 +13,9 @@ async fn echo(req_body: String) -> impl Responder {
 async fn manual_hello() -> impl Responder {
     HttpResponse::Ok().body("Hey there! it is conature")
 }
+async fn make_res() -> impl Responder {
+    HttpResponse::Ok().body("Hey there! it is conature")
+}
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
@@ -20,6 +23,7 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
+            .route("/make", web::get().to(make_res))
     })
     .bind(("127.0.0.1", 8055))?
     .run()
