@@ -14,7 +14,7 @@ async fn manual_hello() -> impl Responder {
     HttpResponse::Ok().body("Hey there! it is conature")
 }
 async fn make_res() -> impl Responder {
-    HttpResponse::Ok().body("Hey there! it is conature")
+    HttpResponse::Ok().body("Hey it's make res")
 }
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
