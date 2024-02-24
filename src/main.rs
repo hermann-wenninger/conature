@@ -23,6 +23,12 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .service(hello)
             .service(echo)
+            .service(
+                // prefixes all resources and routes attached to it...
+                web::scope("/app")
+                    // ...so this handles requests for `GET /app/index.html`
+                    .route("/index.html", web::get().to(index)),
+            )
             .route("/hey", web::get().to(manual_hello))
             .route("/make", web::get().to(make_res))
     })
