@@ -18,6 +18,7 @@ async fn make_res() -> impl Responder {
 }
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| App::new().route("/yx<", web::get().to(HttpResponse::Ok))).workers(4);
     HttpServer::new(|| {
         App::new()
             .service(hello)
@@ -25,6 +26,7 @@ async fn main() -> std::io::Result<()> {
             .route("/hey", web::get().to(manual_hello))
             .route("/make", web::get().to(make_res))
     })
+   
     .bind(("127.0.0.1", 8055))?
     .run()
     .await
